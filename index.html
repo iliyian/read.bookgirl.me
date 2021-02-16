@@ -1,147 +1,144 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://read.bookgirl.me/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://read.bookgirl.me/null">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://read.bookgirl.me/null"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://read.bookgirl.me/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+<!DOCTYPE html><html lang="zh-TW" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>bookgirl</title><meta name="description"><meta name="author" content="iliyian"><meta name="copyright" content="iliyian"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="https://www.dropbox.com/s/a8wvrunh2expapc/blood-avatar.png?dl=1"><link rel="canonical" href="https://iliyian.github.io/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="website"><meta property="og:title" content="bookgirl"><meta property="og:url" content="https://iliyian.github.io/"><meta property="og:site_name" content="bookgirl"><meta property="og:description"><meta property="og:image" content="https://www.dropbox.com/s/z2hs8xe88egxtrk/EA23a_1.bmp?dl=1"><meta property="article:published_time" content="2020-07-08T05:58:46.027Z"><meta property="article:modified_time" content="2020-07-08T05:58:46.027Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
   root: '/',
   algolia: undefined,
   localSearch: undefined,
-  translate: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
   noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
   copy: {
-    success: 'Copy successfully',
-    error: 'Copy error',
-    noSupport: 'The browser does not support'
+    success: '複製成功',
+    error: '複製錯誤',
+    noSupport: '瀏覽器不支援'
   },
-  relativeDate: {
-    homepage: false,
-    post: false
+  bookmark: {
+    message_prev: '按',
+    message_next: '鍵將本頁加入書籤'
   },
-  runtime: '',
-  date_suffix: {
-    just: 'Just',
-    min: 'minutes ago',
-    hour: 'hours ago',
-    day: 'days ago',
-    month: 'months ago'
-  },
+  runtime_unit: '天',
+  runtime: true,
   copyright: undefined,
-  lightbox: 'fancybox',
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
   Snackbar: undefined,
-  source: {
-    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
-    },
-    fancybox: {
-      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
-    }
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
   },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
   isPhotoFigcaption: false,
-  islazyload: false,
-  isanchor: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
   isPost: false,
   isHome: true,
   isHighlightShrink: false,
-  isToc: false,
-  postUpdate: '2021-02-16 15:35:19'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
+  isSidebar: false,
+  postUpdate: '2020-07-08 13:58:46'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">載入中...</div></div></div><canvas class="fireworks"></canvas><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://www.dropbox.com/s/z2hs8xe88egxtrk/EA23a_1.bmp?dl=1" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">6</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">標籤</div><div class="length_num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://images4.alphacoders.com/683/683002.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">bookgirl</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site_title">bookgirl</h1><div id="site_subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/iliyian" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:sqzrmhj@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll_down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/07/08/%E5%92%96%E5%95%A1%E9%A6%86/" title="咖啡馆">     <img class="post_bg" data-src="https://pic2.zhimg.com/v2-86c4ecd5684b8c1a978240ccef71f636_1440w.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="咖啡馆"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/08/%E5%92%96%E5%95%A1%E9%A6%86/" title="咖啡馆">咖啡馆</a><div class="article-meta-wrap"><time class="post-meta__date" title="發表於 2020-07-08 13:41:13"><i class="far fa-calendar-alt"></i>2020-07-08</time></div><div class="content">请您想象一把古老的琴，可以是尘封着的钢琴或忧伤的大提琴，静静地藏匿在已消失数个世纪的音乐声中，存在于不存在的那座阁楼上。已经是黄昏了，西边天空上的梦境紧拥着缕缕瑰丽的霞光，想给阁楼那清澈的窗棂染上自己的颜色，却被一地尘土拒绝在窗边的那双沉默的眼睛之后。风起，尘埃舞动着飞向正死去的天空。尘埃散尽，阁楼已然不存在。咖啡馆静静地坐在无边无际的绿地那不存在的中心。没有人可以从外表描述她的外表。（只是懒得写）易安望着窗外，夕阳美丽了她洁白的衣裳，而她的笑容甜蜜了文学少女的心。  
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/07/06/%E5%8F%AA%E6%9C%89%E4%BD%A0%E8%83%BD%E5%90%AC%E5%BE%97%E5%88%B0/" title="只有你能听得到">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="只有你能听得到"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/06/%E5%8F%AA%E6%9C%89%E4%BD%A0%E8%83%BD%E5%90%AC%E5%BE%97%E5%88%B0/" title="只有你能听得到">只有你能听得到</a><div class="article-meta-wrap"><time class="post-meta__date" title="發表於 2020-07-06 23:19:32"><i class="far fa-calendar-alt"></i>2020-07-06</time></div><div class="content">
         
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    })(window)</script><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a></div></div></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Hexo</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/02/16/hello-world/" title="Hello World">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/16/hello-world/" title="Hello World">Hello World</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-02-16T07:16:42.032Z" title="Created 2021-02-16 15:16:42">2021-02-16</time></span></div><div class="content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;
-More info: Writing
-Run server1$ hexo server
-More info: Server
-Generate static files1$ hexo generate
-More info: Generating
-Deploy to remote sites1$ hexo deploy
-More info: Deployment
-</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/02/16/hello-world/" title="Hello World"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2021/02/16/hello-world/" title="Hello World">Hello World</a><time datetime="2021-02-16T07:16:42.032Z" title="Created 2021-02-16 15:16:42">2021-02-16</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/02/"><span class="card-archive-list-date">February 2021</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-02-16T07:35:19.904Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+            
+        
+        
+          var ap = new APlayer({
+            element: document.getElementById("aplayer-xpEfBSMi"),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            music: {
+              title: "你听得到-节选",
+              author: "Jay Chou",
+              url: "https://www.dropbox.com/s/dfoalak0t97x22h/%E5%8F%AA%E6%9C%89%E4%BD%A0%E8%83%BD%E5%90%AC%E5%BE%97%E5%88%B0.wav?dl=1",
+              pic: "",
+              lrc: ""
+        ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/07/06/%E6%B5%B7/" title="海">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="海"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/06/%E6%B5%B7/" title="海">海</a><div class="article-meta-wrap"><time class="post-meta__date" title="發表於 2020-07-06 18:00:39"><i class="far fa-calendar-alt"></i>2020-07-06</time></div><div class="content">夕阳慷慨地将金光撒向全世界的一切活着的意识。他孤单地站在崖边，海风将他的衣摆吹起，蔚蓝的绸缎如波浪般流连。他将左手缓缓抬至身前，松开五指，一滴眼泪——眼泪般的水晶——无数细小的棱角与光面簇拥在一起，闪烁着飘浮在海平面远处的霞光，将那炽热而冰冷的火焰融化成冰冷而炽热的泪滴。他微蹙双眉，神色迷离地望着她的泪水。不知不觉，他的泪水模糊了整个世界。
+在她16岁那年，隆重的成年礼使村里的人们为所有16岁的孩子建造了一座桥，一座巨大的桥，一座连接海崖与晚霞的大桥。没有人能记起当桥最终落成时，有多少城邦里的居民前来祝贺，有多少尊贵的国王前来瞻仰，有多少威严的教皇前来祝福。但现在没有人老到能记起村人是如何完成这一壮举的，他们只能记得，当16岁的少女们穿着华美的连衣裙，戴着镶嵌有101粒深海底部蚌壳里的珍珠的手链——这是村人过往数十年的积累——戴着斜插着白羽的丝绸帽子，赤脚走上桥面，越走越远……越走越远……最后却只有她带着装在瓶子里的晚霞归来，而其他的女孩儿们，却都永远地消失在那永恒的晚霞之中。她很快受到了村人的刻意敌视，她被认为是杀人的刽子手，被认为是值得所有人唾弃的自私者，被认为是灭绝人性的背叛者。 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/07/05/%E5%AE%8C%E5%85%A8%E8%87%AA%E6%9D%80%E6%89%8B%E5%86%8C/" title="完全自杀手册">     <img class="post_bg" data-src="https://upload.wikimedia.org/wikipedia/zh/thumb/9/90/Complete_suicide_book.jpg/220px-Complete_suicide_book.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="完全自杀手册"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/05/%E5%AE%8C%E5%85%A8%E8%87%AA%E6%9D%80%E6%89%8B%E5%86%8C/" title="完全自杀手册">完全自杀手册</a><div class="article-meta-wrap"><time class="post-meta__date" title="發表於 2020-07-05 12:04:54"><i class="far fa-calendar-alt"></i>2020-07-05</time></div><div class="content">完全自杀手册前言这本书，详详细细写尽自杀的方法。这本书不是常自杀者的记录报告，也不是想说明有关自杀的理由。虽然可以将它当成是一本杂记书来阅读，不过整本书的走向是朝着「如何自杀」的方向进行。啰啰嗦嗦的开场白，可能您已经厌烦了。不知道从多久以前开始「为什么年轻人要走向死亡？」这个话题就不断反复再反复地被谈论着。那时，比方说七○年代，所得到的结论是「虚无主义、」「不欢年代」等等。然而，像是「为什么不可以自杀？」、「为什么一定要活着？」这类的问题，却始终没有任何解答。  
+言归正传，目前需要的是一本能让「自杀」付诸实现的书。有关这样的书，十年前出版的「自杀的方法」，几乎也只是写些拉拉杂杂的内容，令人烦腻之至。现在应该知道的是，纯粹的自杀方法。在美国，只有一部可以进行安乐死的自杀装置，是由一位学者发明创造的。（案例30）而本书将是日本唯一的一本「以语言文字为工具的自杀装置」。谈到这里，很想马上从吃药自杀的方法介绍起，不过为了让「现在为什么要自杀？」这个问题更明白些，以及其它种种商业上的理由，不得不先写一些拉拉杂杂的东西。  
+Chernobyl……我在等待时机，准备「大显身手」。二十年前发生学生 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/07/05/%E7%9F%AD%E6%AD%8C%E8%A1%8C/" title="短歌行">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="短歌行"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/05/%E7%9F%AD%E6%AD%8C%E8%A1%8C/" title="短歌行">短歌行</a><div class="article-meta-wrap"><time class="post-meta__date" title="發表於 2020-07-05 09:45:17"><i class="far fa-calendar-alt"></i>2020-07-05</time></div><div class="content">短歌行对酒当歌，人生几何，譬如朝露，去日苦多。慨当以慷，忧思难忘，何以解忧，唯有杜康。
+
+青青子衿，悠悠我心，纵我不往，子宁不嗣音？
+
+呦呦鹿鸣，食野之苹。我有嘉宾，鼓瑟吹笙。吹笙弹簧，承筐是将，人之好我，是我周行。
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/07/05/%E5%8F%B6%E8%90%BD/" title="叶落">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="叶落"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/05/%E5%8F%B6%E8%90%BD/" title="叶落">叶落</a><div class="article-meta-wrap"><time class="post-meta__date" title="發表於 2020-07-05 00:06:50"><i class="far fa-calendar-alt"></i>2020-07-05</time></div><div class="content">我亦飘零久十年来深恩负尽死生师友
+</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://www.dropbox.com/s/z2hs8xe88egxtrk/EA23a_1.bmp?dl=1" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">iliyian</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives"><div class="headline">文章</div><div class="length_num">6</div></a></div><div class="card-info-data-item is-center">      <a href="/tags"><div class="headline">標籤</div><div class="length_num">3</div></a></div></div><div class="card-info-bookmark is-center"><button class="button--animated" id="bookmark-it" type="button" title="加入書籤"><i class="fas fa-bookmark"></i><span>加入書籤</span></button></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/iliyian" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:sqzrmhj@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">看看再走吧！</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-recent-item"><div class="aside-recent-post"><a href="/2020/07/08/%E5%92%96%E5%95%A1%E9%A6%86/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://pic2.zhimg.com/v2-86c4ecd5684b8c1a978240ccef71f636_1440w.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="咖啡馆" alt="咖啡馆"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/08/%E5%92%96%E5%95%A1%E9%A6%86/" title="咖啡馆">咖啡馆</div><time class="aside-post_meta post-meta__date" title="發表於 2020-07-08 13:41:13">2020-07-08</time></div></a></div><div class="aside-recent-post"><a href="/2020/07/06/%E5%8F%AA%E6%9C%89%E4%BD%A0%E8%83%BD%E5%90%AC%E5%BE%97%E5%88%B0/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="只有你能听得到" alt="只有你能听得到"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/06/%E5%8F%AA%E6%9C%89%E4%BD%A0%E8%83%BD%E5%90%AC%E5%BE%97%E5%88%B0/" title="只有你能听得到">只有你能听得到</div><time class="aside-post_meta post-meta__date" title="發表於 2020-07-06 23:19:32">2020-07-06</time></div></a></div><div class="aside-recent-post"><a href="/2020/07/06/%E6%B5%B7/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="海" alt="海"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/06/%E6%B5%B7/" title="海">海</div><time class="aside-post_meta post-meta__date" title="發表於 2020-07-06 18:00:39">2020-07-06</time></div></a></div><div class="aside-recent-post"><a href="/2020/07/05/%E5%AE%8C%E5%85%A8%E8%87%AA%E6%9D%80%E6%89%8B%E5%86%8C/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://upload.wikimedia.org/wikipedia/zh/thumb/9/90/Complete_suicide_book.jpg/220px-Complete_suicide_book.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="完全自杀手册" alt="完全自杀手册"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/05/%E5%AE%8C%E5%85%A8%E8%87%AA%E6%9D%80%E6%89%8B%E5%86%8C/" title="完全自杀手册">完全自杀手册</div><time class="aside-post_meta post-meta__date" title="發表於 2020-07-05 12:04:54">2020-07-05</time></div></a></div><div class="aside-recent-post"><a href="/2020/07/05/%E7%9F%AD%E6%AD%8C%E8%A1%8C/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="短歌行" alt="短歌行"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/05/%E7%9F%AD%E6%AD%8C%E8%A1%8C/" title="短歌行">短歌行</div><time class="aside-post_meta post-meta__date" title="發表於 2020-07-05 09:45:17">2020-07-05</time></div></a></div></div></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>標籤</span></div><div class="card-tag-cloud"><a href="/tags/%E6%95%A3%E6%96%87/" style="font-size: 22px; color: #99a9bf">散文</a> <a href="/tags/%E8%AF%97%E8%AF%8D/" style="font-size: 22px; color: #99a9bf">诗词</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 16px; color: #999">音乐</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>歸檔</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">七月 2020</span><span class="card-archive-list-count">6</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>網站資訊</span></div><div class="webinfo"><div class="webinfo-item"><div class="webinfo-article-name">文章數目 :</div><div class="webinfo-article-count">6</div></div><div class="webinfo-item"><div class="webinfo-runtime-name">已執行時間 :</div><div class="webinfo-runtime-count" id="webinfo-runtime-count" publish_date="7/4/2020 23:57:12">     </div></div><div class="webinfo-item"><div class="webinfo-site-wordcount-name">本站總字數 :</div><div class="webinfo-site-wordcount">69.7k</div></div><div class="webinfo-item">      <div class="webinfo-site-uv-name">本站訪客數 :</div><div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="webinfo-site-name">本站總訪問量 :</div><div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By iliyian</div><div class="framework-info"><span>Power by </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="簡繁轉換">繁</button><button id="darkmode" type="button" title="淺色和深色模式轉換"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="設定"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到頂部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="/js/third-party/fireworks.js"></script><script defer id="ribbon" src="/js/third-party/canvas-ribbon.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><script id="ribbon_piao" mobile="true" src="/js/third-party/piao.js"></script><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="https://cdn.jsdelivr.net/npm/typed.js"></script><script>var subtitleEffect = true
+if (subtitleEffect) { 
+  var typed = new Typed("#subtitle", {
+    strings: "湖上风来波浩渺,冷落天河星欲颤&#44;北风摇晃琉璃盏,最是人间留不住&#44;朱颜辞镜花辞树,Es muss sein! Es muss sein!".split(","),
+    startDelay: 300,
+    typeSpeed: 150,
+    loop: true,
+    backSpeed: 50
+  })
+} else {
+  document.getElementById("subtitle").innerHTML = '湖上风来波浩渺'
+}</script><script>var endLoading = function () {
+  document.body.style.overflow = 'auto';
+  document.getElementById('loading-box').classList.add("loaded")
+}
+window.addEventListener('load',endLoading)</script></body></html>
